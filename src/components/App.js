@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import Header from './Header';
 import Player from './Player'
+import AddPlayerForm from './AddPlayerForm';
 
 class App extends Component {
   state = {
     players: [
       {
-        name: "Guil",
+        name: "Joy",
         score: 0,
         id: 1
       },
@@ -28,6 +29,9 @@ class App extends Component {
     ]
   };
 
+  //player id counter
+  prevPlayerId = 4;
+
   handleScoreChange = (index, delta) => {
     this.setState( prevState => ({
       score: prevState.players[index].score += delta
@@ -40,6 +44,21 @@ class App extends Component {
         players: prevState.players.filter(p => p.id !== id)
       };
     });
+  };
+
+  handleAddPlayer = (name) => {
+    this.setState(prevState => {
+      return {
+        players: [
+          ...prevState.players,
+          {
+            name,
+            score: 0,
+            id: this.prevPlayerId += 1
+          }
+        ]
+      };
+    })
   };
 
   render() {
@@ -62,6 +81,7 @@ class App extends Component {
             changeScore={this.handleScoreChange}
           />
         )}
+        <AddPlayerForm addPlayer={this.handleAddPlayer}/>
       </div>
     );
   }

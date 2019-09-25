@@ -1,4 +1,5 @@
 import React from 'react';
+import propTypes from "prop-types";
 
 const Stats = ({ players }) => {
 
@@ -21,6 +22,12 @@ const Stats = ({ players }) => {
       </tbody>
     </table>
   )
+};
+
+Stats.propTypes = {
+  players: propTypes.arrayOf(propTypes.shape({
+    score: propTypes.number
+  }))
 };
 
 export default Stats;

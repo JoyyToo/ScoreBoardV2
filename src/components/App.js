@@ -64,8 +64,7 @@ class App extends Component {
   render() {
     return (
       <div className="scoreboard">
-        <Header 
-          title="Scoreboard" 
+        <Header
           players={this.state.players}
         />
   
